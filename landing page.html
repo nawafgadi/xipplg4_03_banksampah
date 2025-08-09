@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bank Sampah</title>
+        <link rel="stylesheet" href="landing page.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+        <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+        <script>emailjs.init('YOUR_USER_ID');</script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo">BANK<br />SAMPAH</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">My Warehouse</a></li>
+                    <li><a href="#">Orders</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">signup-form</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <main class="hero">
+        <div class="hero-left">
+            <div class="hero-text">
+                <h1>SELAMAT DATANG DI<br />BANK SAMPAH!</h1>
+                <p>Ubah barang tidak terpakai menjadi sesuatu yang lebih berharga</p>
+            </div>
+        </div>
+        <section id="report">
+    <h2>Laporkan Sampah</h2>
+    <form class="contact-form" action="https://formspree.io/f/xrblodog" method="POST">
+        <label>
+            Nama Pelapor:
+            <input type="text" name="name" required>
+        </label>
+        <label>
+            Email / Nomor HP:
+            <input type="text" name="contact" required>
+        </label>
+        <label>
+            Lokasi Sampah:
+            <input type="text" name="location" placeholder="Alamat atau link Google Maps" required>
+        </label>
+        <label>
+            Jenis Sampah:
+            <select name="waste_type" required>
+                <option value="">--Pilih Jenis--</option>
+                <option value="Plastik">Plastik</option>
+                <option value="Kertas">Kertas</option>
+                <option value="Logam">Logam</option>
+                <option value="Kaca">Kaca</option>
+                <option value="Organik">Organik</option>
+                <option value="Campuran">Campuran</option>
+            </select>
+        </label>
+        <label>
+            Perkiraan Berat (kg):
+            <input type="number" name="weight" min="0" step="0.1" placeholder="Contoh: 2.5" required>
+        </label>
+        <label>
+            Keterangan:
+            <textarea name="description" placeholder="Informasi tambahan..." required></textarea>
+        </label>
+        <button type="submit">Kirim Laporan</button>
+    </form>
+</section>
+
+
+    </main>
+
+    <!-- Waste Calculator Section -->
+    <section class="calculator-section">
+        <h2>KALKULATOR SAMPAH</h2>
+        <div class="calculator-container">
+            <div class="calculator-form">
+                <h3>Hitung Nilai Sampah Anda</h3>
+                <div class="form-group">
+                    <label for="wasteType">Jenis Sampah:</label>
+                    <select id="wasteType">
+                        <option value="plastic">Plastik</option>
+                        <option value="paper">Kertas</option>
+                        <option value="metal">Logam</option>
+                        <option value="glass">Kaca</option>
+                        <option value="organic">Organik</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="wasteWeight">Berat (kg):</label>
+                    <input type="number" id="wasteWeight" min="0" step="0.1" placeholder="Masukkan berat">
+                </div>
+                <button onclick="calculateWaste()" class="calculate-btn">Hitung</button>
+                <div id="calculationResult" class="result-box" style="display: none;">
+                    <h4>Estimasi Nilai:</h4>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+            <div class="calculator-info">
+                <h3>Daftar Harga</h3>
+                <ul>
+                    <li>Plastik: Rp 2.500/kg</li>
+                    <li>Kertas: Rp 1.500/kg</li>
+                    <li>Logam: Rp 8.000/kg</li>
+                    <li>Kaca: Rp 500/kg</li>
+                    <li>Organik: Rp 1.000/kg</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Statistics Section -->
+    <section class="stats-section">
+        <h2>STATISTIK BANK SAMPAH</h2>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">🗂️</div>
+                <div class="stat-number" data-target="1250">0</div>
+                <div class="stat-label">Kg Sampah Terkumpul</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">💰</div>
+                <div class="stat-number" data-target="3200000">0</div>
+                <div class="stat-label">Rp Didistribusikan</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" data-target="85">0</div>
+                <div class="stat-label">Anggota Aktif</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">♻️</div>
+                <div class="stat-number" data-target="92">0</div>
+                <div class="stat-label">% Sampah Didaur Ulang</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <h2>TESTIMONI PELANGGAN</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-item active">
+                    <div class="testimonial-content">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Program bank sampah ini sangat membantu saya mengelola sampah rumah tangga sekaligus mendapat penghasilan tambahan."</p>
+                        <div class="testimonial-author">- Ibu Siti, Surabaya</div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Prosesnya mudah dan transparan. Sampah saya langsung ditimbang dan saya dapat uang tunai!"</p>
+                        <div class="testimonial-author">- Bapak Ahmad, Malang</div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Anak-anak saya jadi lebih aware tentang pentingnya mengelola sampah. Terima kasih bank sampah!"</p>
+                        <div class="testimonial-author">- Ibu Ratna, Jakarta</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
+
+<!-- Education Section - BARU DITAMBAHKAN -->
+<section class="education-section">
+    <h2>EDUKASI DAUR ULANG</h2>
+    <div class="education-container">
+        <div class="education-card">
+            <img src="perumahan buangan.jpeg" alt="Daur Ulang Plastik">
+            <h3>Cara Memilah Sampah Plastik</h3>
+            <p>Pelajari cara memilah berbagai jenis plastik untuk daur ulang yang efektif</p>
+            <button class="education-btn">Baca Selengkapnya</button>
+        </div>
+        <div class="education-card">
+            <img src="edukasi.jpeg" alt="Daur Ulang Kertas">
+            <h3>Teknik Daur Ulang Kertas</h3>
+            <p>Kreasikan kertas bekas menjadi barang bernilai tinggi</p>
+            <button class="education-btn">Baca Selengkapnya</button>
+        </div>
+        <div class="education-card">
+            <img src="daur ulang.jpeg" alt="Kompos Organik">
+            <h3>Membuat Kompos dari Sampah Organik</h3>
+            <p>Ubah sampah dapur menjadi pupuk alami untuk tanaman</p>
+            <button class="education-btn">Baca Selengkapnya</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Location Finder Section -->
+    <section class="location-section">
+        <h2>LOKASI BANK SAMPAH</h2>
+        <div class="location-container">
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.983476862534!2d109.2490926!3d-7.4352631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ea49d9f9885%3A0x62be0b6159700ec9!2sTelkom%20University%20Purwokerto!5e0!3m2!1sid!2sid!4v1690000000000!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="location-list">
+                <h3>Cabang Terdekat:</h3>
+                <ul>
+                    <li><strong>Bank Sampah Surabaya Timur</strong><br>Jl. Raya Darmo No. 123</li>
+                    <li><strong>Bank Sampah purwokerto Selatan</strong><br>Jl. di panjaitan No. 1</li>
+                    <li><strong>Bank Sampah Jakarta Selatan</strong><br>Jl. imam bonjol No. 789</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Section -->
+    <section class="achievement-section">
+        <h2>PRESTASI & PENGHARGAAN</h2>
+        <div class="achievement-container">
+            <div class="achievement-item">
+                <div class="achievement-icon">🏆</div>
+                <h3>Level 1 - Pemula</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p>75% menuju Level 2</p>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🥇</div>
+                <h3>Penabung Aktif</h3>
+                <p>Menabung lebih dari 50kg dalam sebulan</p>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🌱</div>
+                <h3>Pahlawan Lingkungan</h3>
+                <p>Mengurangi 100kg sampah dari lingkungan</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>FEATURE</h2>
+        <div class="features">
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Shop Icon" />
+                <p>SHOP</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png" alt="Transaksi Icon" />
+                <p>TRANSAKSI</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/263/263115.png" alt="Warehouse Icon" />
+                <p>WAREHOUSE</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2>ABOUT</h2>
+        <p>
+            Bank Sampah adalah program pengelolaan sampah berbasis masyarakat yang berfungsi seperti bank, namun yang ditabung bukan uang, melainkan sampah yang masih bernilai ekonomis. Masyarakat dapat menyetor sampah yang telah dipilah (seperti plastik, kertas, logam) ke bank sampah, kemudian sampah tersebut akan ditimbang dan dihargai layaknya menabung uang. Hasil tabungan dapat diuangkan atau ditukar dengan barang tertentu.
+        </p>
+        <p>Program ini bertujuan untuk:</p>
+        <ul>
+            <li>Mengurangi volume sampah yang dibuang ke lingkungan.</li>
+            <li>Mendorong kebiasaan memilah dan mendaur ulang sampah.</li>
+            <li>Memberikan manfaat ekonomi bagi masyarakat.</li>
+        </ul>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Bank Sampah. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+    <script src="landing page.js"></script>
+    </body>
+</html>
