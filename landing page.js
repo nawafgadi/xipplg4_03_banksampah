@@ -164,6 +164,48 @@ document.querySelectorAll('.education-btn').forEach(btn => {
     });
 });
 
+// Comparison Chart
+const comparisonData = {
+  labels: ["Mei", "Jun", "Jul"],
+  datasets: [{
+    label: 'Total Sampah (kg)',
+    data: [80, 95, 120],
+    backgroundColor: ["#2e5e57", "#4CAF50", "#8BC34A"],
+    borderColor: ["#1e3e37", "#3C9F40", "#7BB33A"],
+    borderWidth: 1,
+    borderRadius: 6
+  }]
+};
+
+new Chart(document.getElementById('comparisonChart'), {
+  type: 'bar',
+  data: comparisonData,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return `${context.dataset.label}: ${context.raw} kg`;
+          }
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Jumlah Sampah (kg)'
+        }
+      }
+    }
+  }
+});
 
 // Initialize all features
 document.addEventListener('DOMContentLoaded', function() {
