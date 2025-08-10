@@ -58,17 +58,32 @@ body {
 }
 
 .hero-left {
+    position: relative;
     flex: 1;
     background-image: url('https://www.rinso.com/images/h0nadbhvm6m4/40642fc990eb056f110df097d5707e95/3c8c38436b1f2f1a4d811c67db03aea8/aHR0cHNfX19hc3NldC1hbWVyaWNhcy51bmlsZXZlcnNvbHV0aW9ucy5jb21fY29udGVudF9kYW1fdW5pbGV2ZXJfZGlydF9mb3JfZ29vZF9pbmRvbmVzaWFfZ2VuZXJhbF9pbWFnZV8wMy0yMzI4NjE4LWpwZy5qcGc/1000w-667h/segudang-manfaat-bank-sampah-dan-cara-kerjanya-yang-perlu-diketahui.avif');
     background-size: cover;
     background-position: center;
     border-radius: 8px;
     color: white;
-    display: flex;
-    align-items: flex-start;
-    padding: 3rem 2rem;
     min-height: 350px;
-    box-shadow: inset 0 0 0 1000px rgba(46, 94, 87, 0.6);
+    overflow: hidden;
+}
+
+.hero-left::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45); /* ubah opacity kalau mau lebih gelap/terang */
+    z-index: 1;
+}
+
+.hero-left h1,
+.hero-left p {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-left h1 {
@@ -722,4 +737,89 @@ body {
   .chart-container {
     height: 300px;
   }
+}
+
+/* Halaman Detail Edukasi */
+.education-detail {
+    max-width: 800px;
+    margin: 2rem auto 5rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.education-detail h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.education-detail p {
+    margin-bottom: 1.5rem;
+}
+
+.education-detail img {
+    display: block;
+    max-width: 100%;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1000px rgba(46, 94, 87, 0.6);
+}
+
+.education-detail ol,
+.education-detail ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.education-detail li {
+    margin-bottom: 0.5rem;
+}
+
+/* Hero edukasi */
+.hero-education {
+    position: relative;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+.hero-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 16px;
 }

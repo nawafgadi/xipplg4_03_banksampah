@@ -160,7 +160,6 @@ function toggleMobileMenu() {
 document.querySelectorAll('.education-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const cardTitle = this.closest('.education-card').querySelector('h3').textContent;
-        alert(`Anda akan mempelajari: ${cardTitle}\n(Fitur detail akan ditambahkan kemudian)`);
     });
 });
 
