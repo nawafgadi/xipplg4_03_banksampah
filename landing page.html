@@ -297,3 +297,196 @@
     <script src="landing page.js"></script>
     </body>
 </html>
+<!-- ...existing code... -->
+
+<!-- Tambahkan tombol dark mode dan scroll to top di dalam <body> -->
+<button id="darkModeToggle" style="position:fixed;bottom:24px;right:24px;z-index:999;padding:10px 16px;border-radius:50%;background:#222;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;" aria-label="Toggle Dark Mode">🌙</button>
+<button id="scrollTopBtn" style="display:none;position:fixed;bottom:80px;right:24px;z-index:999;padding:10px 16px;border-radius:50%;background:#4caf50;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;" aria-label="Scroll to Top">↑</button>
+
+<script>
+// Dark Mode Toggle
+const darkModeBtn = document.getElementById('darkModeToggle');
+darkModeBtn.onclick = function() {
+    document.body.classList.toggle('dark-mode');
+    if(document.body.classList.contains('dark-mode')) {
+        darkModeBtn.textContent = '☀️';
+    } else {
+        darkModeBtn.textContent = '🌙';
+    }
+};
+// Dark mode CSS
+const style = document.createElement('style');
+style.innerHTML = `
+.dark-mode {
+    background: #181818 !important;
+    color: #eee !important;
+}
+.dark-mode .header, .dark-mode .footer, .dark-mode .education-card, .dark-mode .features-section, .dark-mode .about-section, .dark-mode .achievement-section, .dark-mode .calculator-section, .dark-mode .stats-section, .dark-mode .testimonial-section, .dark-mode .chart-section, .dark-mode .location-section {
+    background: #222 !important;
+    color: #eee !important;
+}
+.dark-mode input, .dark-mode select, .dark-mode textarea {
+    background: #333 !important;
+    color: #eee !important;
+    border: 1px solid #555 !important;
+}
+`;
+document.head.appendChild(style);
+
+// Scroll to Top Button
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.onscroll = function() {
+    if (document.documentElement.scrollTop > 200) {
+        scrollBtn.style.display = 'block';
+    } else {
+        scrollBtn.style.display = 'none';
+    }
+};
+scrollBtn.onclick = function() {
+    window.scrollTo({top:0, behavior:'smooth'});
+};
+
+// Statistik Animasi
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.stat-number').forEach(function(el) {
+        let target = +el.getAttribute('data-target');
+        let count = 0;
+        let step = Math.ceil(target / 100);
+        function updateStat() {
+            count += step;
+            if(count >= target) {
+                el.textContent = target.toLocaleString();
+            } else {
+                el.textContent = count.toLocaleString();
+                requestAnimationFrame(updateStat);
+            }
+        }
+        updateStat();
+    });
+});
+
+// Validasi Form Laporan Sampah
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    const name = this.name.value.trim();
+    const contact = this.contact.value.trim();
+    const location = this.location.value.trim();
+    const weight = parseFloat(this.weight.value);
+    if(name.length < 3) {
+        alert('Nama pelapor minimal 3 karakter.');
+        e.preventDefault();
+        return;
+    }
+    if(contact.length < 5) {
+        alert('Isi kontak dengan benar.');
+        e.preventDefault();
+        return;
+    }
+    if(location.length < 5) {
+        alert('Lokasi harus diisi dengan jelas.');
+        e.preventDefault();
+        return;
+    }
+    if(isNaN(weight) || weight <= 0) {
+        alert('Berat sampah harus lebih dari 0.');
+        e.preventDefault();
+        return;
+    }
+});
+
+// Perbaiki alt pada gambar fitur
+document.querySelectorAll('.feature-item img').forEach(function(img){
+    if(!img.alt) img.alt = 'Fitur Bank Sampah';
+});
+</script>
+<!-- ...existing code... -->
+ <!-- ...existing code... -->
+
+<!-- Tambahkan di dalam <body>, sebelum </body> -->
+<a href="https://wa.me/6285876072415?text=Halo%20Bank%20Sampah,%20saya%20ingin%20bertanya." 
+   target="_blank" 
+   id="waChatBtn" 
+   style="position:fixed;bottom:24px;left:24px;z-index:999;display:flex;align-items:center;background:#25d366;color:#fff;padding:10px 18px;border-radius:30px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);font-weight:600;">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width:24px;height:24px;margin-right:8px;">
+    Chat Admin
+</a>
+<!-- ...existing code... -->
+ <!-- ...existing code... -->
+
+<!-- 1. Popup Selamat Datang -->
+<div id="welcomePopup" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:16px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);margin:auto;">
+    <h2>Selamat Datang!</h2>
+    <p>Terima kasih telah berkunjung ke Bank Sampah.<br>Yuk mulai kelola sampah bersama kami!</p>
+    <button onclick="document.getElementById('welcomePopup').style.display='none'" style="margin-top:18px;padding:8px 24px;border-radius:8px;background:#4caf50;color:#fff;border:none;font-weight:600;cursor:pointer;">Tutup</button>
+  </div>
+</div>
+
+<!-- ...existing code... -->
+
+<!-- 6. Progress Bar Target Sampah Bulan Ini -->
+<section class="target-section" style="margin:40px 0;">
+  <h2>Target Pengumpulan Sampah Bulan Ini</h2>
+  <div style="max-width:500px;margin:auto;">
+    <div style="margin-bottom:8px;">Tercapai: <span id="targetPercent">0%</span> dari 2000 kg</div>
+    <div style="width:100%;background:#eee;border-radius:10px;height:22px;overflow:hidden;">
+      <div id="targetBar" style="background:#2196f3;height:100%;width:0%;transition:width 1s;border-radius:10px;"></div>
+    </div>
+    <div style="margin-top:8px;">Sudah terkumpul: <span id="targetKg">0</span> kg</div>
+  </div>
+</section>
+
+<!-- ...existing code... -->
+
+<!-- 2. FAQ Accordion -->
+<section class="faq-section" style="max-width:600px;margin:40px auto;">
+  <h2>FAQ Bank Sampah</h2>
+  <div class="faq-item" style="border-bottom:1px solid #ddd;">
+    <button class="faq-question" style="width:100%;text-align:left;padding:14px 0;background:none;border:none;font-size:1rem;font-weight:600;cursor:pointer;">Apa itu Bank Sampah?</button>
+    <div class="faq-answer" style="display:none;padding-bottom:12px;">Bank Sampah adalah tempat masyarakat menabung sampah yang sudah dipilah untuk didaur ulang dan mendapatkan manfaat ekonomi.</div>
+  </div>
+  <div class="faq-item" style="border-bottom:1px solid #ddd;">
+    <button class="faq-question" style="width:100%;text-align:left;padding:14px 0;background:none;border:none;font-size:1rem;font-weight:600;cursor:pointer;">Bagaimana cara menabung sampah?</button>
+    <div class="faq-answer" style="display:none;padding-bottom:12px;">Pilah sampah sesuai jenis, bawa ke bank sampah, timbang, dan dapatkan tabungan sesuai berat dan jenis sampah.</div>
+  </div>
+  <div class="faq-item" style="border-bottom:1px solid #ddd;">
+    <button class="faq-question" style="width:100%;text-align:left;padding:14px 0;background:none;border:none;font-size:1rem;font-weight:600;cursor:pointer;">Apa manfaat ikut program ini?</button>
+    <div class="faq-answer" style="display:none;padding-bottom:12px;">Mengurangi sampah lingkungan, mendapat uang/tabungan, dan mendukung daur ulang nasional.</div>
+  </div>
+</section>
+
+<!-- ...existing code... -->
+
+<!-- Tambahkan script di akhir sebelum </body> -->
+<script>
+// 1. Popup Selamat Datang
+window.addEventListener('DOMContentLoaded', function() {
+  if (!sessionStorage.getItem('welcomeShown')) {
+    document.getElementById('welcomePopup').style.display = 'flex';
+    sessionStorage.setItem('welcomeShown', 'true');
+  }
+});
+
+// 2. FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    const answer = this.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+    answer.style.display = isOpen ? 'none' : 'block';
+  });
+});
+
+// 6. Progress Bar Target Sampah Bulan Ini
+window.addEventListener('DOMContentLoaded', function() {
+  // Contoh: Sudah terkumpul 1480 kg dari target 2000 kg
+  const terkumpul = 1480;
+  const target = 2000;
+  const percent = Math.round((terkumpul/target)*100);
+  document.getElementById('targetKg').textContent = terkumpul.toLocaleString();
+  document.getElementById('targetPercent').textContent = percent + '%';
+  setTimeout(function(){
+    document.getElementById('targetBar').style.width = percent + '%';
+  }, 400);
+});
+</script>
+<!-- ...existing code... -->
