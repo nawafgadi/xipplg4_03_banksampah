@@ -924,3 +924,100 @@ main {
         border-radius: 8px;
     }
 }
+/* Tambahkan di style tag */
+.chart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 24px;
+}
+.chart-container canvas {
+    width: 100% !important;
+    height: 400px !important;
+    display: block;
+}
+/* Efek hover pada fitur utama */
+.feature-item {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.feature-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    background: #e0f7fa;
+}
+
+/* Efek hover pada kartu edukasi */
+.education-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.education-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    background: #e8f5e9;
+}
+
+/* Efek hover pada leaderboard */
+.leaderboard-section tbody tr {
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.leaderboard-section tbody tr:hover {
+    background: #e0f2f1;
+}
+
+/* Efek hover pada voucher & reward */
+.reward-section > div > div {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.reward-section > div > div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    background: #fffde7;
+}
+/* Efek hover pada leaderboard */
+.leaderboard-section tbody tr {
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+.leaderboard-section tbody tr:hover {
+    background: #e0f2f1;
+    transform: scale(1.02);
+}
+
+/* Efek hover pada voucher & reward */
+.reward-section > div > div {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.reward-section > div > div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    background: #fffde7;
+}
+
+/* Efek hover pada fitur utama */
+.feature-item {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.feature-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    background: #e0f7fa;
+}
+
+/* Efek hover pada kartu edukasi */
+.education-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.education-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    background: #e8f5e9;
+}
