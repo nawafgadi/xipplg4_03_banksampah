@@ -206,3 +206,92 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQ();
     initChart();
 });
+// gallery.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Pastikan elemen galeri ada di halaman sebelum mencoba menginisialisasi
+    const gallerySection = document.querySelector('.gallery-section');
+    if (!gallerySection) {
+        console.log('Galeri section tidak ditemukan, inisialisasi galeri dilewati.');
+        return; // Keluar jika elemen tidak ada
+    }
+
+    const galleryItems = gallerySection.querySelectorAll('.gallery-item');
+    const prevBtn = gallerySection.querySelector('.prev-btn');
+    const nextBtn = gallerySection.querySelector('.next-btn');
+    const dotsContainer = gallerySection.querySelector('.dots-container');
+
+    let currentIndex = 0;
+
+    // Function to show a specific gallery item
+    function showItem(index) {
+        // Hide all items and remove 'active' class
+        galleryItems.forEach(item => {
+            item.classList.remove('active');
+            // Pause any playing videos when switching items
+            const video = item.querySelector('video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0; // Reset video to start
+            }
+        });
+
+        // Remove 'active' class from all dots
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        // Show the selected item and add 'active' class
+        galleryItems[index].classList.add('active');
+        // Play video if the active item is a video
+        const activeVideo = galleryItems[index].querySelector('video');
+        if (activeVideo) {
+            activeVideo.play();
+        }
+
+        // Add 'active' class to the corresponding dot
+        if (dotsContainer.children[index]) {
+            dotsContainer.children[index].classList.add('active');
+        }
+
+        currentIndex = index;
+    }
+
+    // Function to go to the next item
+    function nextItem() {
+        let newIndex = (currentIndex + 1) % galleryItems.length;
+        showItem(newIndex);
+    }
+
+    // Function to go to the previous item
+    function prevItem() {
+        let newIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        showItem(newIndex);
+    }
+
+    // Event listeners for navigation buttons
+    if (prevBtn) prevBtn.addEventListener('click', prevItem);
+    if (nextBtn) nextBtn.addEventListener('click', nextItem);
+
+    // Create dots dynamically
+    galleryItems.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.setAttribute('data-index', index);
+        dot.addEventListener('click', () => {
+            showItem(index);
+        });
+        if (dotsContainer) {
+            dotsContainer.appendChild(dot);
+        }
+    });
+
+    // Initialize the gallery by showing the first item
+    if (galleryItems.length > 0) {
+        showItem(0);
+    }
+
+    // Optional: Auto-play gallery (uncomment to enable)
+    // setInterval(nextItem, 7000); // Change item every 7 seconds
+});
+
