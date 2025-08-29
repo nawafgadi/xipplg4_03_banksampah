@@ -6,6 +6,7 @@
     <title>Bank Sampah</title>
     <link rel="stylesheet" href="landing page.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
     <script>emailjs.init('YOUR_USER_ID');</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -752,12 +753,83 @@
     if (registerBtn) registerBtn.style.display = "none";
 
     const navMain = document.querySelector(".nav-icons");
-    if (navMain) {
-      const userLabel = document.createElement("span");
-      userLabel.textContent = `👤 ${loggedInUser}`;
-      userLabel.style.marginLeft = "12px";
-      navMain.appendChild(userLabel);
+if (navMain) {
+  // buat container profile
+  const profileBox = document.createElement("div");
+  profileBox.classList.add("profile");
+  profileBox.style.position = "relative";
+  profileBox.style.display = "inline-block";
+  profileBox.style.marginLeft = "12px";
+
+  // buat label username
+  const userLabel = document.createElement("span");
+  userLabel.innerHTML = "<i class='bx bxs-user'></i> " + loggedInUser;
+  userLabel.style.cursor = "pointer";
+  profileBox.appendChild(userLabel);
+
+  // buat dropdown menu
+  const dropdownMenu = document.createElement("div");
+  dropdownMenu.classList.add("dropdown-menu");
+  dropdownMenu.style.display = "none";
+  dropdownMenu.style.position = "absolute";
+  dropdownMenu.style.right = "0";
+  dropdownMenu.style.background = "#fff";
+  dropdownMenu.style.border = "1px solid #ccc";
+  dropdownMenu.style.borderRadius = "8px";
+  dropdownMenu.style.padding = "8px";
+  dropdownMenu.style.minWidth = "150px";
+  dropdownMenu.style.boxShadow = "0 2px 6px rgba(0,0,0,0.15)";
+
+  // item edit profil
+  const editProfile = document.createElement("a");
+  editProfile.href = "#";
+  editProfile.innerHTML = "<i class='bx bx-edit'></i> Edit Profil";
+  editProfile.style.display = "block";
+  editProfile.style.padding = "6px";
+  editProfile.style.color = "#333";
+  editProfile.style.textDecoration = "none";
+  dropdownMenu.appendChild(editProfile);
+
+  // item logout
+  const logoutBtn = document.createElement("a");
+  logoutBtn.href = "#";
+  logoutBtn.innerHTML = "<i class='bx bx-log-out'></i> Logout";
+  logoutBtn.style.display = "block";
+  logoutBtn.style.padding = "6px";
+  logoutBtn.style.color = "#333";
+  logoutBtn.style.textDecoration = "none";
+  dropdownMenu.appendChild(logoutBtn);
+
+  profileBox.appendChild(dropdownMenu);
+  navMain.appendChild(profileBox);
+
+  // toggle dropdown saat klik username
+  userLabel.addEventListener("click", () => {
+    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+  });
+
+  // klik di luar menutup dropdown
+  document.addEventListener("click", (e) => {
+    if (!profileBox.contains(e.target)) {
+      dropdownMenu.style.display = "none";
     }
+  });
+
+  // aksi logout
+  logoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.removeItem("loggedInUser");
+    alert("Anda telah logout.");
+    window.location.href = "index.html";
+  });
+
+  // aksi edit profil (dummy dulu)
+  editProfile.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Fitur Edit Profil masih coming soon 🚀");
+  });
+}
   }
-});
+}
+         )
 </script>
